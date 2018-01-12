@@ -13,8 +13,8 @@ import re
 import random
 import base64
 
-from scrapy import log
-from scrapy.contrib.downloadermiddleware.retry import RetryMiddleware as _RetryMiddleware
+# from scrapy import log
+# from scrapy.contrib.downloadermiddleware.retry import RetryMiddleware as _RetryMiddleware
 
 
 class AutoOddsCompareSpiderMiddleware(object):
@@ -70,28 +70,35 @@ class AutoOddsCompareSpiderMiddleware(object):
             f.write(str(exception) + ': ' + str(response.url))
         return None
 
-    # def process_response(self, request, response, spider):
-    #     '''对返回的response处理'''
-    #     # 如果是首页数据，但是没有表格的话就更换代理重试
-    #     # if response.status == 200 and response.url.split('=')[-1] == '' and len(response.xpath('//div[@id="odds_tb"]/table/tbody/tr')) == 0:
-    #     #     proxy = MyTools.get_proxy()
-    #     #     print("该IP是黑名单，新的IP:" + str(proxy))
-    #     #     # 对当前reque加上代理
-    #     #     request.meta['proxy'] = "http://{}".format(str(proxy).replace("b'", "").replace("'", ""))
-    #     #     MyTools.delete_proxy(proxy)
-    #     #     return request
-    #     # 如果返回的response状态不是200，重新生成当前request对象
-    #     if response.status != 200:
-    #         proxy = MyTools.get_proxy()
-    #         print("response.status != 200，新的IP:" + str(proxy))
-    #         # 对当前reque加上代理
-    #         request.meta['proxy'] = "http://{}".format(proxy)
-    #         MyTools.delete_proxy(proxy)
-    #         return request
-    #     else:
-    #         pass
-    #         # pdb.set_trace()
-    #     return response
+    def process_response(self, request, response, spider):
+        '''对返回的response处理'''
+        if response.status != 200:
+            # last_proxy = request.meta.get('proxy')    # 需要用正则表达式找到之前的代理
+            # MyTools.delete_proxy(last_proxy)
+            proxy = MyTools.get_proxy()
+            print("response.status != 200，新的IP:" + str(proxy))
+            # 为当前request更换代理，因为使用的是SplashRequset,所以要更改lua_script
+            LUA_SCRIPT = """
+                        function main(splash)
+                            splash:on_request(function(request)
+                                request:set_proxy{
+                                    host = "%(host)s",
+                                    port = %(port)s,
+                                    username = '', password = '', type = "HTTPS",
+                                }
+                            end)
+                            assert(splash:go(args.url))
+                            assert(splash:wait(0.5))
+                            return {
+                                html = splash:html(),
+                            }
+                        end
+                        """
+            proxy_host = proxy.strip().split(':')[0]
+            proxy_port = int(proxy.strip().split(':')[-1])
+            request.meta['splash']['args']['lua_source'] = LUA_SCRIPT % {'host': proxy_host, 'port': proxy_port}
+            return request
+        return response
 
 # class RetryMiddleware(_RetryMiddleware):
 #

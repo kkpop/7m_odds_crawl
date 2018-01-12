@@ -27,7 +27,7 @@ class MyTools():
     #     requests.get("http://127.0.0.1:5010/delete/?proxy={}".format(proxy))
 
     def get_proxy():
-        proxy_index = random.randint(1, 50)
+        proxy_index = random.randint(1, 256)
         with open('auto_odds_compare/proxy_list.txt', 'r', encoding='utf-8') as proxy_list_file:
             line_count = 1
             for line in proxy_list_file.readlines():
