@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba069d7c-9537-402f-bcff-63a39a94f8be" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/auto_odds_compare/proxy_list.txt" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/auto_odds_compare/items.py" afterPath="$PROJECT_DIR$/auto_odds_compare/items.py" />
-      <change beforePath="$PROJECT_DIR$/auto_odds_compare/middlewares.py" afterPath="$PROJECT_DIR$/auto_odds_compare/middlewares.py" />
-      <change beforePath="$PROJECT_DIR$/auto_odds_compare/pipelines.py" afterPath="$PROJECT_DIR$/auto_odds_compare/pipelines.py" />
-      <change beforePath="$PROJECT_DIR$/auto_odds_compare/settings.py" afterPath="$PROJECT_DIR$/auto_odds_compare/settings.py" />
       <change beforePath="$PROJECT_DIR$/auto_odds_compare/spiders/auto_odds_compare.py" afterPath="$PROJECT_DIR$/auto_odds_compare/spiders/auto_odds_compare.py" />
-      <change beforePath="$PROJECT_DIR$/auto_odds_compare/spiders/tools.py" afterPath="$PROJECT_DIR$/auto_odds_compare/spiders/tools.py" />
-      <change beforePath="$PROJECT_DIR$/readme.txt" afterPath="$PROJECT_DIR$/readme.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -80,8 +72,8 @@
       <file leaf-file-name="auto_odds_compare.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/auto_odds_compare/spiders/auto_odds_compare.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="607">
-              <caret line="49" column="29" lean-forward="false" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="29" />
+            <state relative-caret-position="252">
+              <caret line="263" column="101" lean-forward="false" selection-start-line="263" selection-start-column="91" selection-end-line="263" selection-end-column="101" />
               <folding>
                 <element signature="e#36#49#0" expanded="true" />
               </folding>
@@ -92,8 +84,8 @@
       <file leaf-file-name="proxy_list.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/auto_odds_compare/proxy_list.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="603">
-              <caret line="49" column="18" lean-forward="false" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
+            <state relative-caret-position="190">
+              <caret line="25" column="20" lean-forward="true" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -102,7 +94,7 @@
       <file leaf-file-name="items.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/auto_odds_compare/items.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
+            <state relative-caret-position="-86">
               <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
               <folding />
             </state>
@@ -112,8 +104,8 @@
       <file leaf-file-name="pipelines.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/auto_odds_compare/pipelines.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="47" column="12" lean-forward="false" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="12" />
+            <state relative-caret-position="357">
+              <caret line="52" column="72" lean-forward="false" selection-start-line="52" selection-start-column="62" selection-end-line="52" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -140,8 +132,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>'timeout': 36000,</find>
-      <find>timeout':</find>
       <find>cook</find>
       <find>SplashRequest</find>
       <find>redi</find>
@@ -169,7 +159,9 @@
       <find>pdb.s</find>
       <find>get_proxy</find>
       <find>RetryMiddleware</find>
+      <find>61.155.164.112:3128</find>
       <find>td'</find>
+      <find>company_id</find>
     </findStrings>
     <replaceStrings>
       <replace>update_time</replace>
@@ -199,8 +191,8 @@
         <option value="$PROJECT_DIR$/auto_odds_compare/spiders/tools.py" />
         <option value="$PROJECT_DIR$/auto_odds_compare/middlewares.py" />
         <option value="$PROJECT_DIR$/auto_odds_compare/settings.py" />
-        <option value="$PROJECT_DIR$/auto_odds_compare/spiders/auto_odds_compare.py" />
         <option value="$PROJECT_DIR$/auto_odds_compare/pipelines.py" />
+        <option value="$PROJECT_DIR$/auto_odds_compare/spiders/auto_odds_compare.py" />
       </list>
     </option>
   </component>
@@ -678,14 +670,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/auto_odds_compare/items.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/auto_odds_compare/spiders/rotate_useragent.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
@@ -730,14 +714,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/auto_odds_compare/proxy_list.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="603">
-          <caret line="49" column="18" lean-forward="false" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/auto_odds_compare/middlewares.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="893">
@@ -756,18 +732,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/auto_odds_compare/proxy_list.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="25" column="20" lean-forward="true" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/auto_odds_compare/items.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-86">
+          <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/auto_odds_compare/pipelines.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="47" column="12" lean-forward="false" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="12" />
+        <state relative-caret-position="357">
+          <caret line="52" column="72" lean-forward="false" selection-start-line="52" selection-start-column="62" selection-end-line="52" selection-end-column="72" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/auto_odds_compare/spiders/auto_odds_compare.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="607">
-          <caret line="49" column="29" lean-forward="false" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="29" />
+        <state relative-caret-position="252">
+          <caret line="263" column="101" lean-forward="false" selection-start-line="263" selection-start-column="91" selection-end-line="263" selection-end-column="101" />
           <folding>
             <element signature="e#36#49#0" expanded="true" />
           </folding>

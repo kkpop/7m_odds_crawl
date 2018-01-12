@@ -39,12 +39,15 @@ if not debugging:
         search_date.append(nowadays)
 else:
     for i in range(info_days):
-        if datetime.datetime.now().hour < 8:
-            add_day = (datetime.datetime.now() + datetime.timedelta(days=-(i + 2))).strftime("%Y-%m-%d")
+        if not debugging:
+            if datetime.datetime.now().hour < 8:
+                add_day = (datetime.datetime.now() + datetime.timedelta(days=-(i + 2))).strftime("%Y-%m-%d")
+            else:
+                add_day = (datetime.datetime.now() + datetime.timedelta(days=-(i + 1))).strftime("%Y-%m-%d")
+            search_date.append(add_day)
         else:
-            add_day = (datetime.datetime.now() + datetime.timedelta(days=-(i + 1))).strftime("%Y-%m-%d")
-        search_date.append(add_day)
-
+            add_day = (datetime.datetime.now() + datetime.timedelta(days=-(i + 2))).strftime("%Y-%m-%d")
+            search_date.append(add_day)
 
 class OddSpider(scrapy.Spider):
     name = 'auto_odds_compare'
@@ -256,7 +259,7 @@ class OddSpider(scrapy.Spider):
                 pdb.set_trace()
             # 如果是初赔行，则拿取公司名称和最后更新时间
             if single_match_tr_index == 1:
-                company_id = tr.xpath('td')[0].xpath('input/@value').extract()[0]  # 公司ID
+                company_id = tr.xpath('td')[0].xpath('input/@value').extract()  # 公司ID
                 company_name = tr.xpath('td')[1].xpath('a/text()').extract()[0]  # 公司名称
                 all_odds_href = 'http://1x2.7m.hk/log_en.shtml?id=' + match_id + '&cid=' + company_id  # 跳转到单场比赛全赔率页面的链接
                 single_meta = {}
