@@ -50,47 +50,51 @@ class AutoOddsComparePipeline(object):
             else:
                 col_exist = False
             self.coll = self.db[match_name]  # 获得collection的句柄
-            match_company_id = item['match_id'] + '_' + item['company_id']  # 比赛id_公司id
+
             try:
-                league_name = item['league_name']
-                home_name = item['home_name']
-                away_name = item['away_name']
-                start_time = item['start_time']
-                half_match_result = item['half_match_result']
-                match_result = item['match_result']
+                match_company_id = item['match_id'] + '_' + item['company_id']  # 比赛id_公司id
+                try:
+                    league_name = item['league_name']
+                    home_name = item['home_name']
+                    away_name = item['away_name']
+                    start_time = item['start_time']
+                    half_match_result = item['half_match_result']
+                    match_result = item['match_result']
 
-                # 如果col_exist，则update，否则insert
-                if col_exist:
-                    updateItem = dict(match_company_id_list=match_company_id)
-                    self.coll.update({}, {'$addToSet': updateItem})
-                else:
-                    insertItem = dict(league_name=league_name, home_name=home_name, away_name=away_name,
-                                    start_time=start_time, half_match_result=half_match_result,
-                                    match_result=match_result, match_company_id_list=[match_company_id])
-                    self.coll.insert(insertItem)
-            except Exception as err:
-                print(err)
-                pass
+                    # 如果col_exist，则update，否则insert
+                    if col_exist:
+                        updateItem = dict(match_company_id_list=match_company_id)
+                        self.coll.update({}, {'$addToSet': updateItem})
+                    else:
+                        insertItem = dict(league_name=league_name, home_name=home_name, away_name=away_name,
+                                        start_time=start_time, half_match_result=half_match_result,
+                                        match_result=match_result, match_company_id_list=[match_company_id])
+                        self.coll.insert(insertItem)
+                except Exception as err:
+                    print(err)
+                    pass
 
-            # match_name_2 = match_company_id
-            # if match_name_2 in self.db.getCollectionNames():
-            #     col_2_exist = True
-            # else:
-            #     col_2_exist = False
-            self.coll_2 = self.db[match_company_id]  # 获得比赛ID_公司ID collection的句柄
-            try:
-                company_name = item['company_name']
-                home_odd = item['home_odd']
-                draw_odd = item['draw_odd']
-                away_odd = item['away_odd']
-                update_time = item['update_time']
+                # match_name_2 = match_company_id
+                # if match_name_2 in self.db.getCollectionNames():
+                #     col_2_exist = True
+                # else:
+                #     col_2_exist = False
+                self.coll_2 = self.db[match_company_id]  # 获得比赛ID_公司ID collection的句柄
+                try:
+                    company_name = item['company_name']
+                    home_odd = item['home_odd']
+                    draw_odd = item['draw_odd']
+                    away_odd = item['away_odd']
+                    update_time = item['update_time']
 
-                # 不管col_2_exist，都insert
-                insertItem = dict(company_name=company_name, home_odd=home_odd, draw_odd=draw_odd,
-                                  away_odd=away_odd, update_time=update_time)
-                self.coll_2.insert(insertItem)
-            except Exception as err:
-                print(err)
-                pass
+                    # 不管col_2_exist，都insert
+                    insertItem = dict(company_name=company_name, home_odd=home_odd, draw_odd=draw_odd,
+                                      away_odd=away_odd, update_time=update_time)
+                    self.coll_2.insert(insertItem)
+                except Exception as err:
+                    print(err)
+                    pass
+            finally:
+                self.client.close()
 
         return item
