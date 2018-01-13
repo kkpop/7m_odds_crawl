@@ -11,10 +11,10 @@ import pymysql.cursors
 from auto_odds_compare.items import OddSpiderItem
 from scrapy_splash import SplashRequest
 from auto_odds_compare.spiders.tools import MyTools
-# from scrapy_redis.spiders import RedisSpider
+from scrapy_redis.spiders import RedisSpider
 
 debugging = True
-info_days = 1  # 收集多少天的信息  debugging为true时有效
+info_days = 356  # 收集多少天的信息  debugging为true时有效
 
 # high_accurate_company_name_list = ["Sportsbet.com.au", "Intralot.it", "Betfair", "Sbobet", "BetVictor", "PlanetWin365",
 #                                    "Betshop", "5 Dimes", "10BET", "Pinnacle", "Bet3000", "Lottery Official",
@@ -49,19 +49,55 @@ else:
             add_day = (datetime.datetime.now() + datetime.timedelta(days=-(i + 2))).strftime("%Y-%m-%d")
             search_date.append(add_day)
 
-class OddSpider(scrapy.Spider):
+# class OddSpider(scrapy.Spider):
+class OddSpider(RedisSpider):
     name = 'auto_odds_compare'
-    allowed_domains = ['http://1x2.7m.hk/']
+    # allowed_domains = ['http://1x2.7m.hk/']
     # download_delay = 2
     # 包装url
-    start_urls = []
-    for single_search_date in search_date:
-        if debugging:
-            url = 'http://1x2.7m.hk/result_en.shtml?dt=' + single_search_date + '&cid='
-        else:
-            url = 'http://info.livescore123.com/1x2/index.htm'
-        start_urls.append(url)
-    # redis_key = 'OddSpider:start_urls'
+    # start_urls = []
+    # for single_search_date in search_date:
+    #     if debugging:
+    #         url = 'http://1x2.7m.hk/result_en.shtml?dt=' + single_search_date + '&cid='
+    #     else:
+    #         url = 'http://info.livescore123.com/1x2/index.htm'
+    #     start_urls.append(url)
+    redis_key = 'OddSpider:start_urls'
+
+    global splashurl;
+    splashurl = "http://192.168.99.100:8050/render.html";
+    # 此处是重父类方法，并使把url传给splash解析
+    def make_requests_from_url(self, url):
+        global splashurl;
+        url = splashurl + "?url=" + url;
+        # 使用代理访问
+        proxy = MyTools.get_proxy()
+        LUA_SCRIPT = """
+                    function main(splash)
+                        splash:on_request(function(request)
+                            request:set_proxy{
+                                host = "%(host)s",
+                                port = %(port)s,
+                                username = '', password = '', type = "HTTPS",
+                            }
+                        end)
+                        assert(splash:go(args.url))
+                        assert(splash:wait(0.5))
+                        return {
+                            html = splash:html(),
+                        }
+                    end
+                    """
+        proxy_host = proxy.strip().split(':')[0]
+        proxy_port = int(proxy.strip().split(':')[-1])
+        LUA_SCRIPT = LUA_SCRIPT % {'host': proxy_host, 'port': proxy_port}
+        try:
+            print('line95,当前代理为：', "http://{}".format(proxy))
+            return SplashRequest(url, self.parse,
+                                args={'wait': 0.5, 'images': 0, 'timeout': 30, 'lua_source': LUA_SCRIPT},
+                                dont_filter=True)
+        except Exception as err:
+            MyTools.delete_proxy(proxy)
 
     def start_requests(self):
         for url in self.start_urls:
@@ -172,10 +208,15 @@ class OddSpider(scrapy.Spider):
                 # if (now_mktime-start_mktime) < -3600:
                 #     continue
                 if debugging:
-                    half_home_goal = int(tr.xpath('td')[-2].xpath('text()').extract()[0].split('-')[0].split('(')[-1])
-                    half_away_goal = int(tr.xpath('td')[-2].xpath('text()').extract()[0].split('-')[-1].split(')')[0])
-                    home_goal = int(tr.xpath('td')[-2].xpath('b/text()').extract()[0].split('-')[0])
-                    away_goal = int(tr.xpath('td')[-2].xpath('b/text()').extract()[0].split('-')[-1])
+                    try:
+                        half_home_goal = int(tr.xpath('td')[-2].xpath('text()').extract()[0].split('-')[0].split('(')[-1])
+                        half_away_goal = int(tr.xpath('td')[-2].xpath('text()').extract()[0].split('-')[-1].split(')')[0])
+                        home_goal = int(tr.xpath('td')[-2].xpath('b/text()').extract()[0].split('-')[0])
+                        away_goal = int(tr.xpath('td')[-2].xpath('b/text()').extract()[0].split('-')[-1])
+                    except:
+                        # 有些比赛没有半场或全场比分，就跳过
+                        print('获取比分出错，放弃该场比赛')
+                        return False
                 single_meta = {}
                 single_meta['league_name'] = league_name
                 single_meta['home_name'] = home_name
@@ -213,7 +254,7 @@ class OddSpider(scrapy.Spider):
                 proxy_port = int(proxy.strip().split(':')[-1])
                 LUA_SCRIPT = LUA_SCRIPT % {'host': proxy_host, 'port': proxy_port}
                 try:
-                    print('line183,当前代理为：', "http://{}".format(proxy))
+                    print('line257,当前代理为：', "http://{}".format(proxy))
                     yield SplashRequest(all_odds_href, self.all_odds_parse, meta=single_meta,
                                         args={'wait': 0.5, 'images': 0, 'timeout': 30, 'lua_source': LUA_SCRIPT},
                                         dont_filter=True)
@@ -259,10 +300,12 @@ class OddSpider(scrapy.Spider):
                 pdb.set_trace()
             # 如果是初赔行，则拿取公司名称和最后更新时间
             if single_match_tr_index == 1:
-                company_id = tr.xpath('td')[0].xpath('input/@value').extract()  # 公司ID
+                company_id = tr.xpath('td')[0].xpath('input/@value').extract()[0]  # 公司ID
                 company_name = tr.xpath('td')[1].xpath('a/text()').extract()[0]  # 公司名称
                 all_odds_href = 'http://1x2.7m.hk/log_en.shtml?id=' + match_id + '&cid=' + company_id  # 跳转到单场比赛全赔率页面的链接
                 single_meta = {}
+                single_meta['match_id'] = match_id
+                single_meta['company_id'] = company_id
                 single_meta['league_name'] = league_name
                 single_meta['home_name'] = home_name
                 single_meta['away_name'] = away_name
@@ -297,7 +340,7 @@ class OddSpider(scrapy.Spider):
                 proxy_port = int(proxy.strip().split(':')[-1])
                 LUA_SCRIPT = LUA_SCRIPT % {'host': proxy_host, 'port': proxy_port}
                 try:
-                    print('line297,当前代理为：', "http://{}".format(proxy))
+                    print('line343,当前代理为：', "http://{}".format(proxy))
                     yield SplashRequest(all_odds_href, self.single_company_odds_parse, meta=single_meta,
                                         args={'wait': 0.5, 'images': 0, 'timeout': 30, 'lua_source': LUA_SCRIPT},
                                         dont_filter=True)
@@ -307,8 +350,8 @@ class OddSpider(scrapy.Spider):
     # 获取单家公司的所有赔率
     def single_company_odds_parse(self, response):
         league_name = response.meta['league_name']
-        match_id = response.url.split('=')[-2].split('&')[0]
-        company_id = response.url.split('=')[-1][0]
+        match_id = response.meta['match_id']
+        company_id = response.meta['company_id']
         company_name = response.meta['company_name']
         home_name = response.meta['home_name']
         away_name = response.meta['away_name']

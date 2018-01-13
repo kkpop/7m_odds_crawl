@@ -1,1 +1,0 @@
-Ignoring non-200 response: http://1x2.7m.hk/result_en.shtml?dt=2018-01-10&cid=

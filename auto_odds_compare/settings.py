@@ -14,6 +14,8 @@ BOT_NAME = 'auto_odds_compare'
 SPIDER_MODULES = ['auto_odds_compare.spiders']
 NEWSPIDER_MODULE = 'auto_odds_compare.spiders'
 
+# 保存暂停前的爬虫任务
+JOBDIR='spider_odds_7m'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'auto_odds_compare (+http://www.yourdomain.com)'
@@ -102,10 +104,10 @@ HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
 
 
 # Redis 分布式
-# SCHEDULER = "scrapy_redis.scheduler.Scheduler"  #启用Redis调度存储请求队列
-# SCHEDULER_PERSIST = True    #不清除Redis队列、这样可以暂停/恢复 爬取
-# DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"  #确保所有的爬虫通过Redis去重
-# SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderPriorityQueue'
-# REDIS_HOST = '127.0.0.1'  # 也可以根据情况改成 localhost
-# REDIS_PORT = 6379
-# REDIS_URL = None
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"  #启用Redis调度存储请求队列
+SCHEDULER_PERSIST = True    #不清除Redis队列、这样可以暂停/恢复 爬取
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"  #确保所有的爬虫通过Redis去重
+SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderPriorityQueue'
+REDIS_HOST = '127.0.0.1'  # 也可以根据情况改成 localhost
+REDIS_PORT = 6379
+REDIS_URL = None

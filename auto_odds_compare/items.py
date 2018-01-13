@@ -6,9 +6,9 @@
 # http://doc.scrapy.org/en/latest/topics/items.html
 
 import scrapy
-# from scrapy.item import Item, Field
-# from scrapy.loader import ItemLoader
-# from scrapy.loader.processors import MapCompose, TakeFirst, Join
+from scrapy.item import Item, Field
+from scrapy.loader import ItemLoader
+from scrapy.loader.processors import MapCompose, TakeFirst, Join
 
 # 单个赔率 item
 class OddSpiderItem(scrapy.Item):
@@ -27,8 +27,8 @@ class OddSpiderItem(scrapy.Item):
     update_time = scrapy.Field()  # 赔率更新时间
     current_search_date = scrapy.Field()  # 当前查询日期 用来建表
 
-# class OddSpiderLoader(ItemLoader):
-#     default_item_class = OddSpiderItem
-#     default_input_processor = MapCompose(lambda s: s.strip())
-#     default_output_processor = TakeFirst()
-#     description_out = Join()
+class OddSpiderLoader(ItemLoader):
+    default_item_class = OddSpiderItem
+    default_input_processor = MapCompose(lambda s: s.strip())
+    default_output_processor = TakeFirst()
+    description_out = Join()
