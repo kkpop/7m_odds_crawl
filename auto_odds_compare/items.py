@@ -25,6 +25,7 @@ class OddSpiderItem(scrapy.Item):
     draw_odd = scrapy.Field()  # 平局赔率
     away_odd = scrapy.Field()  # 客胜赔率
     update_time = scrapy.Field()  # 赔率更新时间
+    count_index = scrapy.Field()  # 赔率行index, 因为有些更新时间完全相同，所以需要这个来正确排序，最新的时间为0，依次递增
     current_search_date = scrapy.Field()  # 当前查询日期 用来建表
 
 class OddSpiderLoader(ItemLoader):

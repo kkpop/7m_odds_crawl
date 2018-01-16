@@ -277,6 +277,10 @@ class OddSpider(RedisSpider):
             half_away_goal = response.meta['half_away_goal']
 
         need_step = False  # 标志是否要跳过
+        if len(response.xpath('//div[@id="odds_tb"]/table/tbody/tr')) < 71:
+        # 如果当前比赛小于35家公司开盘就跳过
+            print('小于35家公司开盘，跳过当前比赛', home_name)
+            return False
         for tr in response.xpath('//div[@id="odds_tb"]/table/tbody/tr'):
             try:
                 tr_class = tr.xpath('@class').extract()[0]  # 如果前三个字符不是ltd说明不是比赛line，要跳过
@@ -381,6 +385,7 @@ class OddSpider(RedisSpider):
                 match_result = 0
 
         need_step = False  # 标志是否要跳过
+        count_index = 0     # 遍历赔率行时计数，方便数据库按顺序排序
         for tr in response.xpath('//div[@id="log_tb"]/table/tbody/tr'):
             # 如果tr有class存在，说明是头部需要跳过
             if len(tr.xpath('@class').extract()) > 0 or need_step:
@@ -408,8 +413,10 @@ class OddSpider(RedisSpider):
             odd_Item['home_odd'] = home_odd     # float型
             odd_Item['draw_odd'] = draw_odd     # float型
             odd_Item['away_odd'] = away_odd     # float型
-            odd_Item['update_time'] = time.strftime("%Y-%m-%d %H:%M", time.localtime(update_mktime)) # str
+            odd_Item['update_time'] = time.strftime("%Y-%m-%d %H:%M", time.localtime(update_mktime))    # str
+            odd_Item['count_index'] = count_index   # int
             odd_Item['current_search_date'] = current_search_date     # str 例：2018_01_10
+            count_index += 1
 
             yield odd_Item
 
