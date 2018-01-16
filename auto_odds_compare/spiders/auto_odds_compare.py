@@ -216,7 +216,7 @@ class OddSpider(RedisSpider):
                     except:
                         # 有些比赛没有半场或全场比分，就跳过
                         print('获取比分出错，放弃该场比赛')
-                        return False
+                        continue
                 single_meta = {}
                 single_meta['league_name'] = league_name
                 single_meta['home_name'] = home_name

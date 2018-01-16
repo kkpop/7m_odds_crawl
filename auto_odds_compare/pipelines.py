@@ -23,6 +23,7 @@
 #     'draw_odd': '',
 #     'away_odd': '',
 #     'update_time': '',
+#     'count_index': '',
 # }
 
 
@@ -86,10 +87,11 @@ class AutoOddsComparePipeline(object):
                     draw_odd = item['draw_odd']
                     away_odd = item['away_odd']
                     update_time = item['update_time']
+                    count_index = item['count_index']
 
                     # 不管col_2_exist，都insert
                     insertItem = dict(company_name=company_name, home_odd=home_odd, draw_odd=draw_odd,
-                                      away_odd=away_odd, update_time=update_time)
+                                      away_odd=away_odd, update_time=update_time, count_index=count_index)
                     self.coll_2.insert(insertItem)
                 except Exception as err:
                     print(err)

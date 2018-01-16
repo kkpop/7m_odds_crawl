@@ -20,5 +20,11 @@ LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-12-25&cid=
 LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-12-24&cid=
 (odd)
 ——————————————————————————————————————
+(new)
+LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-07-01&cid=
+LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-07-02&cid=
+LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-07-03&cid=
+LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-07-04&cid=
+LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-07-05&cid=
 
 

@@ -3,11 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ba069d7c-9537-402f-bcff-63a39a94f8be" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/auto_odds_compare/items.py" afterPath="$PROJECT_DIR$/auto_odds_compare/items.py" />
+      <change beforePath="$PROJECT_DIR$/auto_odds_compare/pipelines.py" afterPath="$PROJECT_DIR$/auto_odds_compare/pipelines.py" />
       <change beforePath="$PROJECT_DIR$/auto_odds_compare/spiders/auto_odds_compare.py" afterPath="$PROJECT_DIR$/auto_odds_compare/spiders/auto_odds_compare.py" />
       <change beforePath="$PROJECT_DIR$/pushed_redis_crawl.txt" afterPath="$PROJECT_DIR$/pushed_redis_crawl.txt" />
       <change beforePath="$PROJECT_DIR$/redis_crawl.txt" afterPath="$PROJECT_DIR$/redis_crawl.txt" />
-      <change beforePath="$PROJECT_DIR$/spider_odds_7m/spider.state" afterPath="" />
       <change beforePath="$PROJECT_DIR$/statistics-copy.py" afterPath="$PROJECT_DIR$/statistics-copy.py" />
       <change beforePath="$PROJECT_DIR$/statistics.py" afterPath="$PROJECT_DIR$/statistics.py" />
       <change beforePath="$PROJECT_DIR$/statistics.txt" afterPath="$PROJECT_DIR$/statistics.txt" />
@@ -45,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="auto_odds_compare.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="auto_odds_compare.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/auto_odds_compare/spiders/auto_odds_compare.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="66" column="21" lean-forward="true" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
+            <state relative-caret-position="391">
+              <caret line="280" column="28" lean-forward="true" selection-start-line="280" selection-start-column="28" selection-end-line="280" selection-end-column="28" />
               <folding>
                 <element signature="e#36#49#0" expanded="true" />
                 <element signature="e#420#541#0" expanded="false" />
@@ -62,7 +61,7 @@
         <entry file="file://$PROJECT_DIR$/auto_odds_compare/items.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="475">
-              <caret line="28" column="55" lean-forward="true" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+              <caret line="28" column="55" lean-forward="false" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -71,8 +70,8 @@
       <file leaf-file-name="statistics.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/statistics.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="104" column="80" lean-forward="false" selection-start-line="104" selection-start-column="43" selection-end-line="104" selection-end-column="80" />
+            <state relative-caret-position="228">
+              <caret line="12" column="29" lean-forward="false" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -83,8 +82,8 @@
       <file leaf-file-name="statistics-copy.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/statistics-copy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="488">
-              <caret line="108" column="79" lean-forward="false" selection-start-line="108" selection-start-column="48" selection-end-line="108" selection-end-column="79" />
+            <state relative-caret-position="598">
+              <caret line="259" column="26" lean-forward="false" selection-start-line="259" selection-start-column="26" selection-end-line="259" selection-end-column="26" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -95,18 +94,30 @@
       <file leaf-file-name="statistics.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/statistics.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
-              <caret line="29" column="21" lean-forward="false" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
+            <state relative-caret-position="323">
+              <caret line="17" column="30" lean-forward="false" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="50" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="redis_crawl.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="statistics-limitTime.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/statistics-limitTime.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="123">
+              <caret line="248" column="51" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="273" selection-end-column="30" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="redis_crawl.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/redis_crawl.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="78" />
               <folding />
             </state>
           </provider>
@@ -115,8 +126,8 @@
       <file leaf-file-name="pushed_redis_crawl.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pushed_redis_crawl.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="19" column="78" lean-forward="false" selection-start-line="19" selection-start-column="78" selection-end-line="19" selection-end-column="78" />
+            <state relative-caret-position="304">
+              <caret line="16" column="78" lean-forward="false" selection-start-line="16" selection-start-column="78" selection-end-line="16" selection-end-column="78" />
               <folding />
             </state>
           </provider>
@@ -125,10 +136,10 @@
       <file leaf-file-name="pipelines.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/auto_odds_compare/pipelines.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1292">
-              <caret line="71" column="52" lean-forward="false" selection-start-line="71" selection-start-column="24" selection-end-line="71" selection-end-column="52" />
+            <state relative-caret-position="779">
+              <caret line="41" column="41" lean-forward="false" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
               <folding>
-                <element signature="e#552#583#0" expanded="true" />
+                <element signature="e#577#608#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -145,7 +156,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&lt;= -0.03</find>
       <find>&lt;= -0.01</find>
       <find>limit_support</find>
       <find>156</find>
@@ -172,9 +182,10 @@
       <find>limit_mktime</find>
       <find>original_home_prob_list</find>
       <find>last_home_prob_list</find>
-      <find>update_time</find>
       <find>match_id</find>
       <find>early</find>
+      <find>update_time</find>
+      <find>return F</find>
     </findStrings>
     <replaceStrings>
       <replace>update_time</replace>
@@ -212,15 +223,16 @@
         <option value="$PROJECT_DIR$/readme.txt" />
         <option value="$PROJECT_DIR$/auto_odds_compare/spiders/tools.py" />
         <option value="$PROJECT_DIR$/auto_odds_compare/settings.py" />
-        <option value="$PROJECT_DIR$/auto_odds_compare/pipelines.py" />
         <option value="$PROJECT_DIR$/1.py" />
-        <option value="$PROJECT_DIR$/statistics-copy.py" />
-        <option value="$PROJECT_DIR$/statistics.txt" />
-        <option value="$PROJECT_DIR$/statistics.py" />
         <option value="$PROJECT_DIR$/auto_odds_compare/items.py" />
-        <option value="$PROJECT_DIR$/auto_odds_compare/spiders/auto_odds_compare.py" />
-        <option value="$PROJECT_DIR$/pushed_redis_crawl.txt" />
+        <option value="$PROJECT_DIR$/auto_odds_compare/pipelines.py" />
         <option value="$PROJECT_DIR$/redis_crawl.txt" />
+        <option value="$PROJECT_DIR$/pushed_redis_crawl.txt" />
+        <option value="$PROJECT_DIR$/statistics.txt" />
+        <option value="$PROJECT_DIR$/statistics-limitTime.py" />
+        <option value="$PROJECT_DIR$/statistics-copy.py" />
+        <option value="$PROJECT_DIR$/statistics.py" />
+        <option value="$PROJECT_DIR$/auto_odds_compare/spiders/auto_odds_compare.py" />
       </list>
     </option>
   </component>
@@ -252,7 +264,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -269,6 +280,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -356,7 +368,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32861805" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25353646" sideWeight="0.4978678" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10127932" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.102345414" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -407,13 +419,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/statistics.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/readme.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
@@ -433,7 +438,7 @@
         <state relative-caret-position="1083">
           <caret line="60" column="40" lean-forward="false" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="40" />
           <folding>
-            <element signature="e#552#583#0" expanded="true" />
+            <element signature="e#577#608#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -507,7 +512,7 @@
         <state relative-caret-position="1083">
           <caret line="60" column="40" lean-forward="false" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="40" />
           <folding>
-            <element signature="e#552#583#0" expanded="true" />
+            <element signature="e#577#608#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -716,54 +721,79 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/auto_odds_compare/pipelines.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1292">
-          <caret line="71" column="52" lean-forward="false" selection-start-line="71" selection-start-column="24" selection-end-line="71" selection-end-column="52" />
-          <folding>
-            <element signature="e#552#583#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/pymongo/database.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="551">
           <caret line="468" column="35" lean-forward="false" selection-start-line="468" selection-start-column="30" selection-end-line="468" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/auto_odds_compare/items.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
-          <caret line="28" column="55" lean-forward="true" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+          <caret line="28" column="55" lean-forward="false" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/statistics-copy.py">
+    <entry file="file://$PROJECT_DIR$/auto_odds_compare/pipelines.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="108" column="79" lean-forward="false" selection-start-line="108" selection-start-column="48" selection-end-line="108" selection-end-column="79" />
+        <state relative-caret-position="779">
+          <caret line="41" column="41" lean-forward="false" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
           <folding>
-            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#577#608#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pushed_redis_crawl.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="78" lean-forward="false" selection-start-line="19" selection-start-column="78" selection-end-line="19" selection-end-column="78" />
+        <state relative-caret-position="304">
+          <caret line="16" column="78" lean-forward="false" selection-start-line="16" selection-start-column="78" selection-end-line="16" selection-end-column="78" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/redis_crawl.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/statistics.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" column="30" lean-forward="false" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/statistics-copy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="259" column="26" lean-forward="false" selection-start-line="259" selection-start-column="26" selection-end-line="259" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/statistics-limitTime.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="248" column="51" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="273" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/statistics.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="104" column="80" lean-forward="false" selection-start-line="104" selection-start-column="43" selection-end-line="104" selection-end-column="80" />
+        <state relative-caret-position="228">
+          <caret line="12" column="29" lean-forward="false" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
@@ -772,28 +802,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/auto_odds_compare/spiders/auto_odds_compare.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="66" column="21" lean-forward="true" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
+        <state relative-caret-position="391">
+          <caret line="280" column="28" lean-forward="true" selection-start-line="280" selection-start-column="28" selection-end-line="280" selection-end-column="28" />
           <folding>
             <element signature="e#36#49#0" expanded="true" />
             <element signature="e#420#541#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/statistics.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="29" column="21" lean-forward="false" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/redis_crawl.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>

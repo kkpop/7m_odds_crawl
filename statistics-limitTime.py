@@ -10,14 +10,14 @@ from collections import Counter
 
 # 查询参数
 open_assign_search_date = True     # 是否制定确切日期
-open_save_single_match = True      # 是否保存单场比赛信息
+open_save_single_match = False      # 是否保存单场比赛信息
 
 need_company_id = '17'  # 必须含有的公司ID
 need_company_number = 35    # 开赔率公司必须达到的数量
 
 if open_assign_search_date:
-    assign_search_date = '2017-07-02'
-    # assign_search_date = '2018-01-06'
+    # assign_search_date = '2017-12-27'
+    assign_search_date = '2018-01-06'
     coll_name = assign_search_date.replace('-', '')
 else:
     info_days = 17  # 收集多少天的信息
