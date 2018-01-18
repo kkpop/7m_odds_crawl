@@ -9,28 +9,29 @@ from collections import Counter
 
 
 # 查询参数
-open_assign_search_date = True     # 是否制定确切日期
+open_assign_search_date = False     # 是否制定确切日期
 open_save_single_match = True      # 是否保存单场比赛信息
 
-need_company_id = '17'  # 必须含有的公司ID
+need_company_id = '156'  # 必须含有的公司ID
 need_company_number = 35    # 开赔率公司必须达到的数量
 
 if open_assign_search_date:
-    assign_search_date = '2017-07-02'
+    assign_search_date = '2017-07-01'
     # assign_search_date = '2018-01-06'
     coll_name = assign_search_date.replace('-', '')
 else:
-    info_days = 17  # 收集多少天的信息
-    start_date = (datetime.datetime.now() + datetime.timedelta(days=-((info_days-1) + 4))).strftime("%Y-%m-%d")
-    end_date = (datetime.datetime.now() + datetime.timedelta(days=-(0 + 4))).strftime("%Y-%m-%d")
+    info_days = 10  # 收集多少天的信息
+    assign_end_date = datetime.datetime(2017, 7, 10)  # 指定结束日期
+    start_date = (assign_end_date + datetime.timedelta(days=-(info_days - 1))).strftime("%Y-%m-%d")
+    end_date = (assign_end_date + datetime.timedelta(days=0)).strftime("%Y-%m-%d")
     coll_name = start_date.replace('-', '') + '_' + end_date.replace('-', '')
 
 # 算法参数
 # limit_mktime = 14200    # 最后只读取赛前 n/3600 小时内的数据
 # limit_change_prob = 0.05    # 变化限制赔率
 
-for limit_mktime in range(14100, 14400, 300):
-    for limit_change_prob in numpy.arange(0.05, 0.055, 0.005):
+for limit_mktime in range(12000, 12300, 300):
+    for limit_change_prob in numpy.arange(0.04, 0.045, 0.005):
         for limit_draw_odd_differ in numpy.arange(0.01, 0.015, 0.005):
             limit_change_prob = round(limit_change_prob, 3)
             search_date = []
@@ -38,7 +39,7 @@ for limit_mktime in range(14100, 14400, 300):
                 search_date.append(assign_search_date)
             else:
                 for i in range(info_days):
-                    add_day = (datetime.datetime.now() + datetime.timedelta(days=-(i + 4))).strftime("%Y-%m-%d")
+                    add_day = (assign_end_date + datetime.timedelta(days=-(i))).strftime("%Y-%m-%d")
                     search_date.append(add_day)
 
             # 链接数据库
@@ -90,7 +91,7 @@ for limit_mktime in range(14100, 14400, 300):
                             if need_company_id != '' and not need_company_id in [item.split('_')[-1] for item in match_company_id_list]:
                                 continue
                             for single_company_id in match_company_id_list:
-                            # 遍历单场比赛所有赔率公司列表, 为了求限制时间前的平均概率
+                                # 遍历单场比赛所有赔率公司列表, 为了求限制时间前的平均概率
                                 company_coll = db[single_company_id]
                                 company_coll_cursor = company_coll.find().sort('update_time', 1)    # 时间从早到晚排序
                                 prev_home_probability = 0
@@ -120,7 +121,7 @@ for limit_mktime in range(14100, 14400, 300):
                                 # else:
                                 count = 0
                                 for single_match_company_dict in company_coll_cursor:
-                                # 遍历单场比赛单家公司所有赔率
+                                    # 遍历单场比赛单家公司所有赔率
                                     home_odd = single_match_company_dict['home_odd']
                                     draw_odd = single_match_company_dict['draw_odd']
                                     away_odd = single_match_company_dict['away_odd']
@@ -188,7 +189,7 @@ for limit_mktime in range(14100, 14400, 300):
                                     single_match_info_dict['support_direction'] += '1'
 
                                     if (0.95/last_draw_prob_average) >= 3.8:
-                                    # 如果支持方向是平局，且平局赔率大于等于3.8，则同时也支持低概率方向
+                                        # 如果支持方向是平局，且平局赔率大于等于3.8，则同时也支持低概率方向
                                         if last_home_prob_average < 0.30 and home_pro_diff <= 0:
                                             # 同时支持主胜
                                             if single_match_info_dict['match_result'] == 3:
@@ -226,7 +227,7 @@ for limit_mktime in range(14100, 14400, 300):
                                 single_match_info_dict['away_odd'] = 0.95 / last_away_prob_average
                                 match_info_dict['support_total_netRate'] += round(temp_support_total_netRate/temp_support_total_num, 2)  # 将每场比赛多选的利润除掉
                                 if round(temp_support_total_netRate/temp_support_total_num, 2) > 0:
-                                # 如果利润大于0，正确数就加1
+                                    # 如果利润大于0，正确数就加1
                                     match_info_dict['support_total_right'] += 1
                                 match_info_dict['support_total_num'] += 1    # 一场比赛有支持就加上1
                                 match_info_dict['match_info_list'].append(single_match_info_dict)
@@ -259,7 +260,7 @@ for limit_mktime in range(14100, 14400, 300):
                 success_rate_mean = numpy.mean(numpy.array(success_rate_list))
                 if open_assign_search_date and all_support_total_num == 0:
                     break
-                print('临场N小时: %s, 限制概率变化: %s, 限制平局赔率差: %s, 支持正确数: %s,'
+                print('临场N(s): %s, 限制概率变化: %s, 限制平局赔率差: %s, 支持正确数: %s,'
                       ' 支持净利润: %s, 总支持数: %s, 命中率平均值: %s, 命中率方差: %s,'
                       ' 利润率: %s' % (limit_mktime, limit_change_prob, limit_draw_odd_differ, all_support_total_right, round(all_support_total_netRate, 3), all_support_total_num, round(success_rate_mean, 3), round(success_rate_variance, 3), round(all_support_total_netRate/all_support_total_num, 3)))
                 db_name = 'odds_compare_statistics'
