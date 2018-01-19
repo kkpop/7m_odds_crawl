@@ -15,6 +15,7 @@ from scrapy_redis.spiders import RedisSpider
 
 debugging = True
 info_days = 356  # 收集多少天的信息  debugging为true时有效
+need_company_id = '156'     # pinnacle
 
 # high_accurate_company_name_list = ["Sportsbet.com.au", "Intralot.it", "Betfair", "Sbobet", "BetVictor", "PlanetWin365",
 #                                    "Betshop", "5 Dimes", "10BET", "Pinnacle", "Bet3000", "Lottery Official",
@@ -64,7 +65,7 @@ class OddSpider(RedisSpider):
     #     start_urls.append(url)
     redis_key = 'OddSpider:start_urls'
 
-    global splashurl;
+    global splashurl
     splashurl = "http://192.168.99.100:8050/render.html";
     # 此处是重父类方法，并使把url传给splash解析
     def make_requests_from_url(self, url):
@@ -180,7 +181,7 @@ class OddSpider(RedisSpider):
                 single_match_tr_index = 2
             else:
                 print('td_len出错')
-                pdb.set_trace()
+                # pdb.set_trace()
                 continue
             # 如果是本场比赛首行，则去最后一个td拿链接跳转到全赔率页面
             if single_match_tr_index == 1:
@@ -193,7 +194,7 @@ class OddSpider(RedisSpider):
                         league_name = tr.xpath('td')[0].xpath('text()').extract()[0]
                 except:
                     print('league_name ERROR!')
-                    pdb.set_trace()
+                    # pdb.set_trace()
                 home_name = tr.xpath('td')[2].xpath('text()').extract()[0]
                 away_name = tr.xpath('td')[6].xpath('text()').extract()[0]
                 start_time_year = int(response.url.split('=')[-2].split('-')[0])
@@ -275,6 +276,16 @@ class OddSpider(RedisSpider):
             away_goal = response.meta['away_goal']
             half_home_goal = response.meta['half_home_goal']
             half_away_goal = response.meta['half_away_goal']
+        # 如果当前比赛没有需要包含的公司ID，就不爬取
+        current_company_id_list = []
+        original_current_company_id_list = [item.xpath('td')[0].xpath('input/@value').extract() for item in
+                                            response.xpath('//div[@id="odds_tb"]/table/tbody/tr')]
+        for item in original_current_company_id_list:
+            if item != []:
+                current_company_id_list.append(item[0])
+        if not need_company_id in current_company_id_list:
+            return False
+        # 判断结束
 
         need_step = False  # 标志是否要跳过
         if len(response.xpath('//div[@id="odds_tb"]/table/tbody/tr')) < 71:
@@ -301,7 +312,7 @@ class OddSpider(RedisSpider):
             else:
                 print('td_len出错')
                 single_match_tr_index = 0
-                pdb.set_trace()
+                # pdb.set_trace()
             # 如果是初赔行，则拿取公司名称和最后更新时间
             if single_match_tr_index == 1:
                 company_id = tr.xpath('td')[0].xpath('input/@value').extract()[0]  # 公司ID
