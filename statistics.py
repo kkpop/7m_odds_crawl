@@ -9,19 +9,19 @@ from collections import Counter
 
 
 # 查询参数
-open_assign_search_date = False     # 是否制定确切日期
+open_assign_search_date = True     # 是否制定确切日期
 open_save_single_match = True      # 是否保存单场比赛信息
 
 need_company_id = '156'  # 必须含有的公司ID
 need_company_number = 35    # 开赔率公司必须达到的数量
 
 if open_assign_search_date:
-    assign_search_date = '2017-07-01'
+    assign_search_date = '2017-01-10'
     # assign_search_date = '2018-01-06'
     coll_name = assign_search_date.replace('-', '')
 else:
     info_days = 10  # 收集多少天的信息
-    assign_end_date = datetime.datetime(2017, 7, 10)  # 指定结束日期
+    assign_end_date = datetime.datetime(2017, 1, 10)  # 指定结束日期
     start_date = (assign_end_date + datetime.timedelta(days=-(info_days - 1))).strftime("%Y-%m-%d")
     end_date = (assign_end_date + datetime.timedelta(days=0)).strftime("%Y-%m-%d")
     coll_name = start_date.replace('-', '') + '_' + end_date.replace('-', '')
@@ -255,11 +255,15 @@ for limit_mktime in range(12000, 12300, 300):
                         continue
                     current_success_rate = round(all_support_total_right/all_support_total_num, 2)
                     success_rate_list.append(current_success_rate)
-
+                if all_support_total_num == 0:
+                    if open_assign_search_date:
+                        print('当前无推荐比赛')
+                        break
+                    else:
+                        print('当天无推荐比赛')
+                        continue
                 success_rate_variance = numpy.var(numpy.array(success_rate_list))
                 success_rate_mean = numpy.mean(numpy.array(success_rate_list))
-                if open_assign_search_date and all_support_total_num == 0:
-                    break
                 print('临场N(s): %s, 限制概率变化: %s, 限制平局赔率差: %s, 支持正确数: %s,'
                       ' 支持净利润: %s, 总支持数: %s, 命中率平均值: %s, 命中率方差: %s,'
                       ' 利润率: %s' % (limit_mktime, limit_change_prob, limit_draw_odd_differ, all_support_total_right, round(all_support_total_netRate, 3), all_support_total_num, round(success_rate_mean, 3), round(success_rate_variance, 3), round(all_support_total_netRate/all_support_total_num, 3)))
