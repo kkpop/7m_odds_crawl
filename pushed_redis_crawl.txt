@@ -18,7 +18,7 @@ LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-12-27&cid=
 LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-12-26&cid=
 LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-12-25&cid=
 LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-12-24&cid=
-(odd)
+(old)
 ——————————————————————————————————————
 (new)
 LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-01-01&cid=
@@ -31,5 +31,21 @@ LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-01-07&cid=
 LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-01-08&cid=
 LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-01-09&cid=
 LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-01-10&cid=
+LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-01-11&cid=
+LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-01-12&cid=
+LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-01-13&cid=
+LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-01-14&cid=
+LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-01-15&cid=
+LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-01-16&cid=
+LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-01-17&cid=
+LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-01-18&cid=
+LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-01-19&cid=
+LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-01-20&cid=
+LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-01-21&cid=
+LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-01-22&cid=
+LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-01-23&cid=
+LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-01-24&cid=
+LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-01-25&cid=
+LPUSH OddSpider:start_urls http://1x2.7m.hk/result_en.shtml?dt=2017-01-26&cid=
 
 
